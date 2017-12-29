@@ -4542,6 +4542,10 @@ react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
 
+react-native-busy-indicator@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-busy-indicator/-/react-native-busy-indicator-1.1.0.tgz#bdbd938980c81e6a5bba095c70228497e3011378"
+
 react-native-button@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-2.2.0.tgz#9d84c6baad3297df587a89bda04e5a678f7957e9"

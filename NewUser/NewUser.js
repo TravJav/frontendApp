@@ -7,18 +7,12 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  AppRegistry
+  AppRegistry,
+  NavigatorIOS
 } from 'react-native';
-
-import {
-  StackNavigator,
-  TabNavigator,
-} from 'react-navigation';
-
 import Button from 'react-native-button';
-import CreateUser from './NewUser/NewUser';
 
-export default class App extends React.Component {
+export default class CreateUser extends React.Component {
   constructor() {
     super();
 
@@ -28,20 +22,7 @@ export default class App extends React.Component {
     }
 
     this.loginButton = this.login_user.bind(this);
-    this.createUser = this.createUser.bind(this);
   }
-  renderScene(route, navigator) {
-    console.log(route);
- 
-    if(route.name == 'NewUser') {
-      return <CreateUser navigator={navigator} />
-    }
-    
-  }
-
-
-
-
   // Login Http Request
   login_user() {
     fetch('http://192.168.1.6:3200/login', {
@@ -57,23 +38,8 @@ export default class App extends React.Component {
     });
   }
 
-
-  createUser() {
-    <Navigator
-    initialRoute={{name: 'NewUser'}}
-    renderScene={this.renderScene.bind(this)}
-  />
-  }
-
-
-  static navigationOptions = {
-    title: 'Welcome',
-  };
   render() {
     return (
-
-
-
       <View style={styles.container}>
         <TextInput style={styles.inputUser}
           placeholder=" Email"
@@ -91,14 +57,7 @@ export default class App extends React.Component {
         <Button
           style={styles.buttonContainer}
           onPress={() => this.loginButton()}>
-          <Text style={styles.buttonContainer}> Login </Text>
-        </Button>
-
-
-        <Button
-          style={styles.newUserButton}
-          onPress={() => this.createUser()}>
-          <Text style={styles.newUserButton}> New User ?</Text>
+          <Text style={styles.buttonContainer}> Create Account </Text>
         </Button>
 
       </View>
@@ -134,14 +93,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 65,
     paddingBottom: 25,
 
-  },
-
-  newUserButton: {
-    marginTop: 30,
-    backgroundColor: '#55638B',
-    width: 200,
-    paddingHorizontal: 65,
-    paddingBottom: 25,
   }
 
 });
