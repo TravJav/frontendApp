@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
   // Login Http Request
   login_user() {
-    fetch('http://IPADDY/login', {
+    fetch('http://192.168.1.6:3200/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -52,7 +52,7 @@ export default class App extends React.Component {
 
 
   createUser() {
-  
+
   }
 
 
@@ -60,41 +60,35 @@ export default class App extends React.Component {
   render() {
     return (
       <ImageBackground
-          style={{flex: 1}}
-          source={require('./public/cover.jpg')}>
-          
-          <View style={styles.container}>
+        style={{ flex: 1 }}
+        source={require('./public/cover.jpg')}>
+        <View style={styles.container}>
           <TextInput style={styles.inputUser}
-          placeholder=" Email"
-          onChangeText={(text) => {
-            this.setState({ email: text });
-          }} />
+            placeholder=" Email"
+            onChangeText={(text) => {
+              this.setState({ email: text });
+            }} />
 
-        <TextInput style={styles.inputPass}
-          placeholder=" Password"
-          secureTextEntry
-          onChangeText={(text) => {
-            this.setState({ password: text });
-          }} />
+          <TextInput style={styles.inputPass}
+            placeholder=" Password"
+            secureTextEntry
+            onChangeText={(text) => {
+              this.setState({ password: text });
+            }} />
 
-        <Button
-          style={styles.buttonContainer}
-          onPress={() => this.loginButton()}>
-          <Text style={styles.buttonContainer}> Login </Text>
-        </Button>
+          <Button
+            style={styles.buttonContainer}
+            onPress={() => this.loginButton()}>
+            <Text style={styles.buttonContainer}> Login </Text>
+          </Button>
+          <Button
+            style={styles.newUserButton}
+            onPress={() => this.createUser()}>
+            <Text style={styles.newUserButton}> New User ?</Text>
+          </Button>
 
-
-        <Button
-          style={styles.newUserButton}
-          onPress={() => this.createUser()}>
-          <Text style={styles.newUserButton}> New User ?</Text>
-        </Button>
-  </View>
-
-
-
-
-        </ImageBackground>
+        </View>
+      </ImageBackground>
 
 
     );
@@ -103,59 +97,54 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
 
   container: {
-    position: 'absolute',
     flex: 1,
-    backgroundColor: '#5E6D9A',
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center'
-  
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-
   inputUser: {
-    height: 30,
-    width: 200,
+    height: 40,
+    width: 250,
     backgroundColor: '#AAABAE',
     marginTop: 35,
     fontWeight: '500',
     borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   inputPass: {
-    height: 30,
-    width: 200,
+    height: 40,
+    width: 250,
     backgroundColor: '#AAABAE',
-
     marginTop: 35,
     borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttonContainer: {
-    marginTop: 30,
-    backgroundColor: '#55638B',
     width: 200,
-    paddingHorizontal: 65,
-    paddingBottom: 25,
+    marginRight:40,
+    marginLeft:40,
+    marginTop:10,
+    paddingTop:20,
+    paddingBottom:20,
+    backgroundColor:'#FC3C25',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff',
+    textAlign: 'center', // <-- the magic
   },
   newUserButton: {
-    marginTop: 30,
-    backgroundColor: '#55638B',
     width: 200,
-    paddingHorizontal: 65,
-    paddingBottom: 25,
+    marginRight:40,
+    marginLeft:40,
+    marginTop:10,
+    paddingTop:20,
+    paddingBottom:20,
+    backgroundColor:'#FC3C25',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff',
+    textAlign: 'center', // <-- the magic
+
   }
 });
-
-
-
-/*
-<Image
-  style={{
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'cover'
-  }}
-  source={require('./public/cover.jpg')}
-  resizeMode="stretch"
-
-/>
-*/
