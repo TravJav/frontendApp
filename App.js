@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
   // Login Http Request
   login_user() {
-    fetch('http://192.168.1.6:3200/login', {
+    fetch('http://IPADDY/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
