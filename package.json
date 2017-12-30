@@ -24,6 +24,9 @@
     "react-native": "0.50.3",
     "react-native-busy-indicator": "^1.1.0",
     "react-native-button": "^2.2.0",
-    "react-navigation": "^1.0.0-beta.22"
+    "react-native-form-generator": "^0.9.9",
+    "react-navigation": "^1.0.0-beta.22",
+    "rn-bootstrap-buttons": "^1.0.4",
+    "tcomb-form-native": "^0.6.11"
   }
 }
