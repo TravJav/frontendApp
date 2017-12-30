@@ -40,7 +40,10 @@ export default class CreateUser extends React.Component {
 
   render() {
     return (
+
+
       <View style={styles.container}>
+
         <TextInput style={styles.inputUser}
           placeholder=" Email"
           onChangeText={(text) => {
@@ -64,6 +67,7 @@ export default class CreateUser extends React.Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -93,6 +97,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 65,
     paddingBottom: 25,
 
-  }
+  }/*,
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover'
+  }*/
 
 });

@@ -7,8 +7,11 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  AppRegistry
+  AppRegistry,
+  ImageBackground
 } from 'react-native';
+
+
 
 import {
   StackNavigator,
@@ -30,16 +33,6 @@ export default class App extends React.Component {
     this.loginButton = this.login_user.bind(this);
     this.createUser = this.createUser.bind(this);
   }
-  renderScene(route, navigator) {
-    console.log(route);
- 
-    if(route.name == 'NewUser') {
-      return <CreateUser navigator={navigator} />
-    }
-    
-  }
-
-
 
 
   // Login Http Request
@@ -59,23 +52,19 @@ export default class App extends React.Component {
 
 
   createUser() {
-    <Navigator
-    initialRoute={{name: 'NewUser'}}
-    renderScene={this.renderScene.bind(this)}
-  />
+  
   }
 
 
-  static navigationOptions = {
-    title: 'Welcome',
-  };
+
   render() {
     return (
-
-
-
-      <View style={styles.container}>
-        <TextInput style={styles.inputUser}
+      <ImageBackground
+          style={{flex: 1}}
+          source={require('./public/cover.jpg')}>
+          
+          <View style={styles.container}>
+          <TextInput style={styles.inputUser}
           placeholder=" Email"
           onChangeText={(text) => {
             this.setState({ email: text });
@@ -100,18 +89,29 @@ export default class App extends React.Component {
           onPress={() => this.createUser()}>
           <Text style={styles.newUserButton}> New User ?</Text>
         </Button>
+  </View>
 
-      </View>
+
+
+
+        </ImageBackground>
+
+
     );
   }
 }
 const styles = StyleSheet.create({
+
   container: {
+    position: 'absolute',
     flex: 1,
     backgroundColor: '#5E6D9A',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center'
+  
   },
+
   inputUser: {
     height: 30,
     width: 200,
@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
     height: 30,
     width: 200,
     backgroundColor: '#AAABAE',
+
     marginTop: 35,
     borderRadius: 25,
   },
@@ -133,9 +134,7 @@ const styles = StyleSheet.create({
     width: 200,
     paddingHorizontal: 65,
     paddingBottom: 25,
-
   },
-
   newUserButton: {
     marginTop: 30,
     backgroundColor: '#55638B',
@@ -143,5 +142,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 65,
     paddingBottom: 25,
   }
-
 });
+
+
+
+/*
+<Image
+  style={{
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover'
+  }}
+  source={require('./public/cover.jpg')}
+  resizeMode="stretch"
+
+/>
+*/
