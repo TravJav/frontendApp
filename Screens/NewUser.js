@@ -21,25 +21,43 @@ import {
 } from 'react-navigation';
 
 var Form = t.form.Form;
-var Person = t.struct({
-  name: t.String,              // a required string
-  surname: t.maybe(t.String),  // an optional string
-  age: t.Number,               // a required number
-  rememberMe: t.Boolean        // a boolean
-});
-
 export default class CreateUser extends React.Component {
 
   constructor() {
     super();
+
+    this.state = {
+     email: '',
+     password: '',
+     username: ''
+    }
     this.captureInfo = this.captureInfo.bind(this);
   }
-
+// TODO perform password verification with repeat password
   captureInfo() {
-    const value = this._form.getValue(); // use that ref to get the form value
-    console.log('value: ', value);
-    alert(value);
+    var value = this.refs.form.getValue();
+    var convertedFormat = JSON.stringify(value)
+   
+    if (value) { // if validation fails, value will be null
+      console.log("Checking "+value.email); // value here is an instance of Person
+      console.log("Checking "+value.username);
+      console.log("Checking "+value.email);
+    fetch('http://192.168.1.6:3200/newUser', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        // values go in here
+        email: value.email,
+        username: value.username,
+        password: value.password
+
+      })
+    });
   }
+}
   static navigationOptions = {
     title: 'Welcome!',
   };
@@ -47,7 +65,7 @@ export default class CreateUser extends React.Component {
     return (
       <View style={styles.container}>
         <Form
-          ref={c => this._form = c} // assign a ref
+          ref="form" // assign a ref
           type={Person}
           options={options}
         />
@@ -56,18 +74,15 @@ export default class CreateUser extends React.Component {
         </TouchableHighlight>
       </View>
     );
-
   }
 }
 // here we are: define your domain model
 var Person = t.struct({
-  email: t.String,
+   email: t.String,
   username: t.String,
-  password: t.String,
-  RepeatPassword: t.String,     // a required number
-  rememberMe: t.Boolean,
-  terms: t.Boolean,       // a boolean
+  password: t.String   // a boolean
 });
+
 var options = {
   fields: {
 
@@ -84,6 +99,7 @@ var options = {
     },
   },
 };
+
 styles = StyleSheet.create({
   container: {
     justifyContent: 'center',

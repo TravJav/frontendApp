@@ -31,13 +31,15 @@ export default class Login extends React.Component {
       password: ''
     }
 
-    this.loginButton = this.login_user.bind(this);
-    this.createUser = this.createUser.bind(this);
+    this.loginButton = this.login_user.bind(this);  
   }
 
 
   // Login Http Request
   login_user() {
+      if(this.state.email == ' ' || this.state.password == ' '){
+          alert("You Have Not Entered Any Info!");
+      }
     fetch('http://192.168.1.6:3200/login', {
       method: 'POST',
       headers: {
@@ -50,12 +52,6 @@ export default class Login extends React.Component {
       })
     });
   }
-
-
-  createUser() {
-  
-  }
-
 
   static navigationOptions = {
     title: 'Existing User',
@@ -92,8 +88,6 @@ export default class Login extends React.Component {
 
         </View>
       </ImageBackground>
-
-
     );
   }
 }

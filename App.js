@@ -11,22 +11,19 @@ import {
   ImageBackground
 } from 'react-native';
 
-
-
 import {
   StackNavigator,
   TabNavigator,
 } from 'react-navigation';
 
 import Button from 'react-native-button';
-
 import CreateUser from './Screens/NewUser';
 import Login from './Screens/Login';
 
 export default class App extends React.Component {
   render() {
     return (
-      <Appnavigation />
+      <Appnavigation/>
     );
   }
 }
