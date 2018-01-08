@@ -1,4 +1,7 @@
+
 import React from 'react';
+import Dash from './Dash'
+import obtainToken from '../Actions/obtainToken';
 import {
     StyleSheet,
     Text,
@@ -8,11 +11,9 @@ import {
     TouchableOpacity,
     ActivityIndicator,
     AppRegistry,
-    ImageBackground
+    ImageBackground,
+    AsyncStorage
 } from 'react-native';
-
-
-
 import {
     StackNavigator,
     TabNavigator,
@@ -23,21 +24,45 @@ import Button from 'react-native-button';
 import CreateUser from './NewUser';
 import App from '../App';
 
+
 export default class Login extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
             password: '',
-            data: ''
+            data: '',
+            token: ''
         }
-
         this.loginButton = this.login_user.bind(this);
+        this.userDashboard = this.userDashboard.bind(this);
     }
 
 
-    // Login Http Request
+    userDashboard(json) { // Take user to their dash is everything checks out
+
+
+        let parse = JSON.parse(json);
+        console.log(parse);
+
+        /*
+        try {
+            AsyncStorage.setItem('UserToken', this.state.token);
+            alert()
+        } catch (error) {
+            alert(" \n Error Obtaining Token Value, Please Check Your Network Connection")
+        }
+        this.props.navigate('Dash');
+
+        //  this.state.token = {this.props.obtainToken}
+        //  this.state.token = {this.props.}
+        /*
+       {this.status}
+       {this.token}
+        this.props.navigation.navigate('Dash') */
+    }
+
     login_user() {
 
         if (this.state.email == ' ' || this.state.password == ' ') {
@@ -56,13 +81,20 @@ export default class Login extends React.Component {
 
         })
             .then(response => {
-                response = JSON.stringify(response.text());
-             
-                console.log(response);
+                return response.json();
+               
+            })
+            .then(json=>{
+
+                return json;
+           
+            })
+            .then (json =>{
+                userDashboard(json);
             })
             .catch((error) => {
-                console.error(error);
-            });
+                console.error("username or password incorrect");
+            })
     }
 
     static navigationOptions = {
@@ -70,6 +102,7 @@ export default class Login extends React.Component {
     };
     render() {
         return (
+
             <ImageBackground
                 style={{ flex: 1 }}
                 source={require('../public/cover.jpg')}>
@@ -100,6 +133,7 @@ export default class Login extends React.Component {
 
                 </View>
             </ImageBackground>
+
         );
     }
 }

@@ -1,3 +1,4 @@
+import {connect} from 'react-redux';
 import React from 'react';
 import {
   StyleSheet,
@@ -21,7 +22,7 @@ import {
 } from 'react-navigation';
 
 var Form = t.form.Form;
-export default class CreateUser extends React.Component {
+class CreateUser extends React.Component {
 
   constructor() {
     super();
@@ -128,3 +129,12 @@ styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+
+function mapStateToProps(state){
+  return {
+    
+  }
+  }
+
+export default  connect(mapStateToProps, null)(CreateUser);

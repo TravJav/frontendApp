@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   StyleSheet,
@@ -18,12 +19,19 @@ import {
 
 import Button from 'react-native-button';
 import CreateUser from './Screens/NewUser';
+import Dash from './Screens/Dash';
 import Login from './Screens/Login';
 
+
+
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
   render() {
     return (
-      <Appnavigation/>
+      <Appnavigation/> 
     );
   }
 }
@@ -32,12 +40,10 @@ Navigation of the app is achieved through essentially pointing where we want our
 */
 const Appnavigation = StackNavigator({
   HomeScreen: { screen: Login },
-  CreateUser :{screen: CreateUser}
+  CreateUser: { screen: CreateUser }
 });
 
-
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -45,3 +51,4 @@ const styles = StyleSheet.create({
 
   }
 });
+

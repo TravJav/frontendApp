@@ -19,6 +19,8 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
     "expo": "^23.0.4",
     "react": "16.0.0",
     "react-native": "0.50.3",
@@ -26,6 +28,8 @@
     "react-native-button": "^2.2.0",
     "react-native-form-generator": "^0.9.9",
     "react-navigation": "^1.0.0-beta.22",
+    "react-redux": "^5.0.6",
+    "react-redux-connect": "^0.1.0",
     "rn-bootstrap-buttons": "^1.0.4",
     "tcomb-form-native": "^0.6.11"
   }
