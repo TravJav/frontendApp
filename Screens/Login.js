@@ -1,4 +1,6 @@
 
+
+import store from 'react-native-simple-store';
 import React from 'react';
 import Dash from './Dash'
 import obtainToken from '../Actions/obtainToken';
@@ -39,28 +41,11 @@ export default class Login extends React.Component {
         this.userDashboard = this.userDashboard.bind(this);
     }
 
-
     userDashboard(json) { // Take user to their dash is everything checks out
-
-
-        let parse = JSON.parse(json);
-        console.log(parse);
-
-        /*
-        try {
-            AsyncStorage.setItem('UserToken', this.state.token);
-            alert()
-        } catch (error) {
-            alert(" \n Error Obtaining Token Value, Please Check Your Network Connection")
-        }
-        this.props.navigate('Dash');
-
-        //  this.state.token = {this.props.obtainToken}
-        //  this.state.token = {this.props.}
-        /*
-       {this.status}
-       {this.token}
-        this.props.navigation.navigate('Dash') */
+        store.save('serverToken', {
+            authorization: this.state.token
+        })
+        this.props.navigation.navigate('Dash')
     }
 
     login_user() {
@@ -79,20 +64,12 @@ export default class Login extends React.Component {
                 password: this.state.password,
             })
 
-        })
+        }).then(response => response.json())
             .then(response => {
-                return response.json();
-               
-            })
-            .then(json=>{
-
-                return json;
-           
-            })
-            .then (json =>{
-                userDashboard(json);
-            })
-            .catch((error) => {
+                let Token = response.token;
+                this.setState({ token: Token })
+                this.userDashboard();
+            }).catch((error) => {
                 console.error("username or password incorrect");
             })
     }
@@ -102,7 +79,6 @@ export default class Login extends React.Component {
     };
     render() {
         return (
-
             <ImageBackground
                 style={{ flex: 1 }}
                 source={require('../public/cover.jpg')}>

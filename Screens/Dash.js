@@ -1,7 +1,8 @@
-import {connect} from 'react-redux';
+
+import store from 'react-native-simple-store';   //https://www.npmjs.com/package/react-native-simple-store
 import React from 'react';
 import Login from './Login';
-import{CreateStore, applyMiddleware} from 'redux';
+import { CreateStore, applyMiddleware } from 'redux';
 import {
     StyleSheet,
     Text,
@@ -27,24 +28,42 @@ import CreateUser from './NewUser';
 import App from '../App';
 
 export default class Dash extends React.Component {
-constructor(){
-    super(props);
+    constructor() {
+        super();
 
-    this.state = {
-    token: this.props.children.t
+
+
+        this.state = {
+            token: ''
+        }
+
+        this.test = this.test.bind(this);
     }
+
+    componentDidMount() {
+        // Get updated object
+        store.get('serverToken')
+            .then((res) =>
+            this.setState({ token: 'trvis haycock' })
+                // console.log(res.authorization) // 'Blurry Face'
+           
+            )
+this.test();
+    }
+test(){
+    console.log("---------"+ this.state.token)
 }
-
-
-static navigationOptions = {
-    title: 'Welcome! Travis',
-  };
+    
+    static navigationOptions = {
+        title: 'Users Dashboard',
+    };
     render() {
         return (
             <View style={styles.container}>
 
             </View>
-        );
+
+        )
     }
 }
 const styles = StyleSheet.create({
@@ -55,8 +74,3 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     }
 });
-function mapStateToProps(state){
-    return {
-      
-    }
-    }

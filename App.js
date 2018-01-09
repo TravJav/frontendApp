@@ -40,7 +40,8 @@ Navigation of the app is achieved through essentially pointing where we want our
 */
 const Appnavigation = StackNavigator({
   HomeScreen: { screen: Login },
-  CreateUser: { screen: CreateUser }
+  CreateUser: { screen: CreateUser },
+  Dash: {screen: Dash}
 });
 
 const styles = StyleSheet.create({
