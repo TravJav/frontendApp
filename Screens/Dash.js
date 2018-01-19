@@ -31,8 +31,6 @@ export default class Dash extends React.Component {
     constructor() {
         super();
 
-
-
         this.state = {
             token: ''
         }
@@ -44,16 +42,16 @@ export default class Dash extends React.Component {
         // Get updated object
         store.get('serverToken')
             .then((res) =>
-            this.setState({ token: 'trvis haycock' })
-                // console.log(res.authorization) // 'Blurry Face'
-           
+                this.setState({ token: 'trvis haycock' })
+            // console.log(res.authorization) // 'Blurry Face'
+
             )
-this.test();
+        this.test();
     }
-test(){
-    console.log("---------"+ this.state.token)
-}
-    
+    test() {
+        console.log("---------" + this.state.token)
+    }
+
     static navigationOptions = {
         title: 'Users Dashboard',
     };
