@@ -45,13 +45,14 @@ export default class Login extends React.Component {
         store.save('serverToken', {
             authorization: this.state.token
         })
-        this.props.navigation.navigate('Dash')
+      
+        this.props.navigation.navigate('Dash');
     }
 
     login_user() {
         if (this.state.email == ' ' || this.state.password == ' ') {
             alert("You Have Not Entered Any Info!");
-        }
+        } 
         fetch('http://192.168.1.2:3200/login', {
             method: 'POST',
             headers: {
@@ -69,7 +70,8 @@ export default class Login extends React.Component {
                 this.setState({ token: Token })
                 this.userDashboard();
             }).catch((error) => {
-                console.error("username or password incorrect");
+                this.props.navigation.navigate('Login')
+                
             })
     }
 
