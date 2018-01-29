@@ -53,7 +53,7 @@ export default class Login extends React.Component {
         if (this.state.email == ' ' || this.state.password == ' ') {
             alert("You Have Not Entered Any Info!");
         } 
-        fetch('http://192.168.1.2:3200/login', {
+        fetch('http://192.168.1.4:3200/login', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

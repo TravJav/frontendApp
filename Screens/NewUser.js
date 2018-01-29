@@ -43,7 +43,7 @@ export default class CreateUser extends React.Component {
       console.log("Checking "+value.email); // value here is an instance of Person
       console.log("Checking "+value.username);
       console.log("Checking "+value.email);
-    fetch('http://192.168.1.2:3200/newUser', {
+    fetch('http://192.168.1.4:3200/newUser', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -23,6 +23,7 @@ import Stats from './Screens/DashScreens/Stats';
 import Workout from './Screens/DashScreens/Workout';
 import Inbox from './Screens/DashScreens/Inbox';
 import Findgym from './Screens/DashScreens/Findgym';
+import GymInfo from './Screens/DashScreens/GymInfo';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +34,6 @@ export default class App extends React.Component {
     );
   }
 }
-
 
 const Appnavigation = StackNavigator({
   HomeScreen: {
@@ -69,6 +69,9 @@ const Appnavigation = StackNavigator({
   Findgym: {
     screen: Findgym
   },
+  GymInfo: {
+    screen: GymInfo
+  }
 });
 
 const styles = StyleSheet.create({

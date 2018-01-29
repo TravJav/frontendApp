@@ -19,13 +19,9 @@ import {
 } from 'react-navigation';
 
 const MAP_KEY = "AIzaSyAdJxnlhQgWeZM6aAzsDhDIrHtd3CMQnDA";
-
-
+const SideMenu = require('react-native-side-menu');
 var Promise = require('bluebird');
-
 import Button from 'react-native-button';
-
-
 
 export default class Findgym extends React.Component {
 
@@ -96,7 +92,7 @@ export default class Findgym extends React.Component {
         });
           setTimeout(() => {
            this.findGym(); // Find the gyms close to user
-          }, 8000);
+          }, 6000);
       }
 
       componentWillUnmount() {
@@ -118,7 +114,9 @@ export default class Findgym extends React.Component {
 
     render() {
       return (
+     
         <View style={{flex: 1}}>
+           
           <MapView
             style={styles.map}
             region={this.state.mapRegion}
@@ -138,68 +136,3 @@ const styles = StyleSheet.create({
       ...StyleSheet.absoluteFillObject,
     },
   });
-
-  /*
-
-   render() {
-    return (
-      <View style={{flex: 1}}>
-        <MapView
-          style={styles.map}
-          region={this.state.mapRegion}
-          showsUserLocation={true}
-          followUserLocation={true}
-          onRegionChange={this.onRegionChange.bind(this)}>
-          <MapView.Marker
-            coordinate={{
-              latitude: (this.state.lastLat + 0.00050) || -36.82339,
-              longitude: (this.state.lastLong + 0.00050) || -73.03569,
-            }}>
-            <View>
-              <Text style={{color: '#000'}}>
-                { this.state.lastLong } / { this.state.lastLat }
-
-              </Text>
-            </View>
-            {this.state.places}
-          </MapView.Marker>
-          
-        </MapView>
-      </View>
-    );
-  }
-}
-
-  */
-
-  /*
-
-old 
-
-
- render() {
-    return (
-      <View style={{flex: 1}}>
-        <MapView
-          style={styles.map}
-          provider={MapView.PROVIDER_GOOGLE}
-          initialRegion={{
-            latitude: this.state.lastLat,
-            longitude: this.state.lastLong
-          }}
-          >
-          <Marker
-coordinate={{
-  latitude: this.state.lastLat,
-  longitude: this.state.lastLong
-}}
-/>
-    {this.state.places}
-      </MapView>
-      </View>
-    );
-  }
-}
-
-
-  */
