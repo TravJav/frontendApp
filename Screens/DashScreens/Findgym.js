@@ -2,6 +2,7 @@ import store from 'react-native-simple-store';   //https://www.npmjs.com/package
 import React from 'react';
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps'
 import { CreateStore, applyMiddleware } from 'redux';
+import GymInfo from './GymInfo';
 import {
     StyleSheet,
     Text,
@@ -25,17 +26,25 @@ import Button from 'react-native-button';
 
 export default class Findgym extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             mapRegion: null,
             lastLat: null,
             lastLong: null,
             places: null,
             long: null,
-            lat: null
-           
+            lat: null ,
+            places : null 
         }
+
+        this.gyminformation = this.gyminformation.bind(this);
+    }
+
+    gyminformation(){
+
+
+
     }
 
    findGym(){
@@ -92,7 +101,7 @@ export default class Findgym extends React.Component {
         });
           setTimeout(() => {
            this.findGym(); // Find the gyms close to user
-          }, 6000);
+          }, 4000);
       }
 
       componentWillUnmount() {
@@ -116,7 +125,6 @@ export default class Findgym extends React.Component {
       return (
      
         <View style={{flex: 1}}>
-           
           <MapView
             style={styles.map}
             region={this.state.mapRegion}
@@ -126,7 +134,13 @@ export default class Findgym extends React.Component {
       
            {this.state.places}
           </MapView>
+          <Button
+           style={styles.buttonContainer}
+           onPress={() => this.props.navigation.navigate('GymInfo')} >
+           <Text style={styles.newUserButton}> Gym info </Text>
+       </Button>
         </View>
+         
       );
     }
   }
@@ -135,4 +149,17 @@ const styles = StyleSheet.create({
     map: {
       ...StyleSheet.absoluteFillObject,
     },
+    buttonContainer: {
+      width: 200,
+      marginRight: 40,
+      marginLeft: 40,
+      marginTop: 10,
+      paddingTop: 20,
+      paddingBottom: 20,
+      backgroundColor: '#FC3C25',
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: '#fff',
+      textAlign: 'center', // <-- the magic
+  }
   });

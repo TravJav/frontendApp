@@ -1,7 +1,6 @@
-import store from 'react-native-simple-store';   //https://www.npmjs.com/package/react-native-simple-store
+
 import React from 'react';
-import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps'
-import { CreateStore, applyMiddleware } from 'redux';
+import FindGym from './Findgym';
 import {
     StyleSheet,
     Text,
@@ -18,23 +17,33 @@ import {
     TabNavigator,
 } from 'react-navigation';
 
-const MAP_KEY = "AIzaSyAdJxnlhQgWeZM6aAzsDhDIrHtd3CMQnDA";
 const SideMenu = require('react-native-side-menu');
 var Promise = require('bluebird');
 import Button from 'react-native-button';
 
 export default class GymInfo extends React.Component {
 
-    constructor() {
-        super();
-   
+    constructor(props) {
+        super(props);
+
+      this.state = {
+    
+      }
+   this.locations = this.loctions.bind(this);
     }
 
+    locations(){
+
+   <FindGym gyms= {this.props.places}/>
+   console.log(gyms.element.name + gyms.element.rating)
+
+    }
     componentDidMount() {
       
+
+        
       }
 
-  
 
     static navigationOptions = {
         title: 'Gym Info',
@@ -43,11 +52,13 @@ export default class GymInfo extends React.Component {
     render() {
       return (
      
-        <View style={styles.container}>
+  <View style={styles.container}>
    
-
-
-   
+   <Button
+           onPress={() => t} >
+           <Text style={styles.newUserButton}> Gym info </Text>
+       </Button>
+  
 
     </View>
       );
@@ -59,5 +70,24 @@ export default class GymInfo extends React.Component {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    /*,
+
+    contentPane: {
+
+    },
+
+    googleImage : {
+        
+    },
+
+    rating: {
+
+    },
+
+    description: {
+
     }
+*/
+
 });
