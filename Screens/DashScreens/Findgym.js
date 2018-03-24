@@ -19,7 +19,7 @@ import {
     TabNavigator,
 } from 'react-navigation';
 
-const MAP_KEY = "AIzaSyAdJxnlhQgWeZM6aAzsDhDIrHtd3CMQnDA";
+const MAP_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 const SideMenu = require('react-native-side-menu');
 var Promise = require('bluebird');
 import Button from 'react-native-button';
