@@ -14,18 +14,18 @@ import {
     ActivityIndicator,
     AppRegistry,
     ImageBackground,
-    AsyncStorage
+    AsyncStorage,
 } from 'react-native';
 import {
     StackNavigator,
     TabNavigator,
 } from 'react-navigation';
 var Promise = require('bluebird');
-
 import Button from 'react-native-button';
 import CreateUser from './NewUser';
 import App from '../App';
-
+import LoadingSpinner from './LoadingSpinner';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -35,11 +35,17 @@ export default class Login extends React.Component {
             email: '',
             password: '',
             data: '',
-            token: ''
+            token: '',
+           loading: true
         }
         this.loginButton = this.login_user.bind(this);
         this.userDashboard = this.userDashboard.bind(this);
+
     }
+    componentDidMount() {
+     return (<LoadingSpinner loading={this.state.loading}/>)
+      }
+    
 
     userDashboard(json) { // Take user to their dash is everything checks out
         store.save('serverToken', {
@@ -53,6 +59,8 @@ export default class Login extends React.Component {
         if (this.state.email == ' ' || this.state.password == ' ') {
             alert("You Have Not Entered Any Info!");
         } 
+        this.setState({loading:true})
+
         fetch('http://192.168.1.4:3200/login', {
             method: 'POST',
             headers: {
@@ -73,12 +81,23 @@ export default class Login extends React.Component {
                 this.props.navigation.navigate('Login')
                 
             })
+    
+    
     }
 
     static navigationOptions = {
         title: 'Existing User',
     };
     render() {
+      if(this.state.loading == true){
+          return(
+        <ActivityIndicator
+        animating={true}
+        size="small"
+       />
+          )
+      } else {
+          
         return (
             <ImageBackground
                 style={{ flex: 1 }}
@@ -109,11 +128,14 @@ export default class Login extends React.Component {
                     </Button>
 
                 </View>
+         
             </ImageBackground>
 
         );
     }
 }
+}
+
 const styles = StyleSheet.create({
 
     container: {
